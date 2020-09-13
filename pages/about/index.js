@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Nav from "../../components/Nav";
-import Overlay from "../../components/Nav/Overlay";
+import Overlay from "../../components/Nav/overlay";
 import Marquee from "../../components/Marquee";
 import ArtistList from "../../components/ArtistList/";
 import FooterWrapper from "../../components/Footer";

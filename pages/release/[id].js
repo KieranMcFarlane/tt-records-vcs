@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import NavWhite from "../../components/Nav/white";
-import Overlay from "../../components/Nav/Overlay";
+import Overlay from "../../components/Nav/overlay";
 import Video from "../../components/Posts/Video";
 import MarqueeWhite from "../../components/Marquee/white";
 import FooterWrapper from "../../components/Footer";
