@@ -60,11 +60,12 @@ flex-direction: column;
 
 .image__container img {
     padding: 15px;
+    height: auto;
 }
 
 @media screen and (min-width: 1100px) {
     .image__container img {
-        max-width: 646px;
+        max-width: 100%;
     }
 }
 
@@ -251,11 +252,11 @@ const TracklistContainer = styled.div`
     margin-bottom: 24px;
 }
 
-ul.tracklist__selection {
+.tracklist__selection {
     margin-bottom: 24px;
 }
 
-ul.tracklist__selection li {
+.tracklist__selection p {
     font-family: 'Nimbus Sans L';
     font-size: 18px;
     letter-spacing: -0.54px;
@@ -273,7 +274,7 @@ ul.tracklist__selection li {
     }
 }
 
-.featured__release__description p:first-of-type {
+.featured__release__description div.lead p {
     font-family: 'Nimbus Sans L';
     font-size: 22px;
     letter-spacing: -0.66px;
@@ -328,9 +329,11 @@ const VideoComponentContainer = styled.div`
     border-top: 1px solid #111;
     border-bottom: 1px solid #111;
 
+    section > section > div:after {
+        display: none;
+    }
+
     .releases__video {
-        border-top: 1px solid #111;
-        border-bottom: 1px solid #111;
         padding-top: 15px;
         padding-bottom: 6px;
     }
@@ -345,6 +348,15 @@ const VideoComponentContainer = styled.div`
         padding-left: 80px;
     }
 
+    .video__inner__description {
+        width: 654px;
+    }
+
+    .video__component {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     @media only screen and (min-width: 1000px) {
 
     .video__component {
@@ -352,6 +364,8 @@ const VideoComponentContainer = styled.div`
         border-left: 1px solid #111;
         padding-right: 40px;
         padding-left: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     }
@@ -363,7 +377,7 @@ const VideoComponentContainer = styled.div`
 
 
 const Release = (props)  => {
-const {id, title, subtitle, content, iframe, tracklist, credits, video} = props;
+const {id, title, subtitle, content, iframe, link, tracklist, credits, bandcampLink, releaseContent, videoPoster} = props;
 const [view, setView] = useState('full');
 const [show, setShow] = useState(false);
 
@@ -392,7 +406,7 @@ console.log(props)
              </div>
          <h1 className="title">{title}</h1>
             <h2>{subtitle}</h2>
-         <div className="desktop-bandcamp"><a href="#">Buy on Bandcamp</a></div>
+         <div className="desktop-bandcamp"><a href={bandcampLink}>Buy on Bandcamp</a></div>
          </div>
 
          <div className="image__container"><img src="https://media.graphcms.com/op8Om5jgSAGE614eviRI" alt="" /></div>
@@ -403,7 +417,8 @@ console.log(props)
         <TracklistContainer>
              <section className="container no-margin featured__description__container">
                  <section className="featured__release__description">
-                     <ReactMarkdown source={content.markdown} />
+                     <div className="lead"><ReactMarkdown source={content.markdown} /></div>
+                     <ReactMarkdown source={releaseContent.markdown} />
                      {iframe && (
                      <iframe width="100%" height="60" src={iframe}></iframe>
                      )}
@@ -425,11 +440,11 @@ console.log(props)
                  )}
              </section>
         </TracklistContainer>
-        {video && (
+        {link && (
         <VideoComponentContainer>
 
             <section className="video__component component releases__video container no-margin">
-                <Video></Video>
+                <Video view={'full'} subtitle={subtitle} image={videoPoster} title={title} link={link}></Video>
             </section>
 
         </VideoComponentContainer>

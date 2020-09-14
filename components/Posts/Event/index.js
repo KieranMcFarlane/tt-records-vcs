@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ReactMarkdown from "react-markdown";
 
 const FullContainer = styled.div`
 position: relative;
@@ -306,7 +307,7 @@ const CompactContainer = styled.div`
     `
 
 
-const Event = ({title, subtitle, image, view, publishedDate }) => {
+const Event = ({title, content, subtitle, image, view, publishedDate }) => {
     return <EventWrapper>
         {view === 'full' ? (
     <FullContainer>
@@ -319,14 +320,15 @@ const Event = ({title, subtitle, image, view, publishedDate }) => {
         <div class="content__container">
             <p class="category">Event</p>
         <date class="date">Added {publishedDate}</date>
-        </div>
+        </div><h2 className="subtitle">{subtitle}</h2>
         <h2 class="title">{title}</h2>
-        <p class="text"></p>
+        <p class="text">{content.markdown}</p>
     </div>
     </FullContainer>
     ) : (
     <CompactContainer>
             <div className="text__container">
+                <h2 className="subtitle">{subtitle}</h2>
                 <h2 className="title">{title}</h2>
                 <div className="content__container">
                     <p className="category category__mobile">Event</p>

@@ -4,9 +4,17 @@ fragment Post on Post {
     subtitle
     category
     link
+    bandcampLink
     iframe
+    publishedDate
+    videoPoster {
+        url
+    }
     image {
         url
+    }
+    releaseContent {
+        markdown
     }
     content {
         markdown
