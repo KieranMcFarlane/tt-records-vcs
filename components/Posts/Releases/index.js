@@ -15,6 +15,10 @@ h2.title + h2.subtitle {
     margin-top: -8px;
 }
 
+h2.title {
+    cursor: pointer;
+}
+
 iframe {
     max-width: 450px;
     margin-top: 20px;

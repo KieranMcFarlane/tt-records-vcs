@@ -246,13 +246,13 @@ const CompactContainer = styled.div`
 
 
 
-const Editor = ({title, subtitle, view, publishedDate }) => {
+const Editor = ({title, subtitle, link, view, publishedDate }) => {
     return <Wrapper>
     {view === 'full' ? (
         <FullContainer>
             <div className="text__container">
                 <h2 className="subtitle">{subtitle}</h2>
-            <h2 className="title">{title}</h2>
+                <a target="_blank" href={link}><h2 className="title">{title}</h2></a>
                 <div className="content__container">
                     <p className="category">Editor</p>
                     <date className="date">Added {publishedDate}</date>
@@ -263,7 +263,7 @@ const Editor = ({title, subtitle, view, publishedDate }) => {
         <CompactContainer>
             <div className="text__container">
                 <h2 className="subtitle">{subtitle}</h2>
-                <h2 className="title">{title}</h2>
+                <a target="_blank" href={link}><h2 className="title">{title}</h2></a>
                 <div className="content__container">
                     <p className="category category__mobile">Editor</p>
                     <date className="date">Added {publishedDate}</date>

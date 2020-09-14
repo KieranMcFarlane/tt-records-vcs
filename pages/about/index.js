@@ -1,11 +1,12 @@
 import Head from 'next/head'
+import Spacer from "../../components/Nav/spacer";
 import Nav from "../../components/Nav";
 import Overlay from "../../components/Nav/Overlay";
 import Marquee from "../../components/Marquee";
 import ArtistList from "../../components/ArtistList/";
 import FooterWrapper from "../../components/Footer";
 import styled from "styled-components";
-import React  from 'react';
+import React, {useState} from 'react';
 import {initializeApollo} from "../../utilites";
 import {GetArtistsDocument, useGetArtistsQuery} from "../../schema";
 import { motion, AnimatePresence } from 'framer-motion';
@@ -51,9 +52,9 @@ const ContainerWrapper = styled.div`
         font-size: 36px;
     }
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 600px) {
         p {
-            font-size: 36px;
+            font-size: 32px;
         }
     }
 
@@ -75,6 +76,8 @@ const ContainerWrapper = styled.div`
 const Artists = () => {
     const {data, loading} = useGetArtistsQuery()
 console.log(data)
+const [view, setView] = useState('full');
+    const [show, setShow] = useState(false);
 
     if (!data || loading) return <>Loading</>
 
@@ -85,10 +88,11 @@ console.log(data)
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
-            <Nav>
+            <Spacer></Spacer>
+            <Nav setShow={setShow}>
             <Marquee>Reading: About TT Records</Marquee>
             </Nav>
-            <Overlay/>
+            <Overlay show={show} setShow={setShow} />
    
             <Wrapper>
                 <ContainerWrapper>

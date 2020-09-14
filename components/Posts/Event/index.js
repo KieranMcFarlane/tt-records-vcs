@@ -307,7 +307,7 @@ const CompactContainer = styled.div`
     `
 
 
-const Event = ({title, content, subtitle, image, view, publishedDate }) => {
+const Event = ({title, content, image, view, link, publishedDate }) => {
     return <EventWrapper>
         {view === 'full' ? (
     <FullContainer>
@@ -320,8 +320,8 @@ const Event = ({title, content, subtitle, image, view, publishedDate }) => {
         <div class="content__container">
             <p class="category">Event</p>
         <date class="date">Added {publishedDate}</date>
-        </div><h2 className="subtitle">{subtitle}</h2>
-        <h2 class="title">{title}</h2>
+        </div>
+        <a target="_blank" href={link}><h2 class="title">{title}</h2></a>
         <p class="text">{content.markdown}</p>
     </div>
     </FullContainer>
@@ -329,7 +329,7 @@ const Event = ({title, content, subtitle, image, view, publishedDate }) => {
     <CompactContainer>
             <div className="text__container">
                 <h2 className="subtitle">{subtitle}</h2>
-                <h2 className="title">{title}</h2>
+                <a target="_blank" href={link}><h2 className="title">{title}</h2></a>
                 <div className="content__container">
                     <p className="category category__mobile">Event</p>
                     <date class="date">Added {publishedDate}</date>

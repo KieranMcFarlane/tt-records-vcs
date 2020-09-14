@@ -57,7 +57,9 @@ table {
 
 html {font-size: 100%;}
 
-
+a {
+  cursor: pointer;
+}
 
 * {
   -webkit-font-smoothing: antialiased;

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Spacer from "../../components/Nav/spacer";
 import Nav from "../../components/Nav";
 import Overlay from "../../components/Nav/Overlay";
 import MarqueeScroll from "../../components/Marquee";
@@ -42,7 +43,7 @@ const Artists = () => {
                 <title>TT records | Artists</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-
+            <Spacer></Spacer>
             <Nav setShow={setShow}>
                 <MarqueeScroll>Reading: TT Artists</MarqueeScroll>
             </Nav>

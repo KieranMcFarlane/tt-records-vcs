@@ -12,6 +12,15 @@ const NavWrapper = styled.nav`
     flex-direction: column;
     padding-bottom: 40px;
     border-bottom: 1px solid #111;
+
+    @media screen (max-width: 1000px) {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
 `
 
 const NavContainer = styled.div`

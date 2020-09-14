@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Hero from "../components/Hero";
 import Nav from "../components/Nav";
+import Spacer from "../components/Nav/spacer";
 import Overlay from "../components/Nav/Overlay";
 import Radio from "../components/Posts/Radio";
 import Editor from "../components/Posts/Editor";
@@ -84,6 +85,7 @@ const Home = ()  => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             
+            <Spacer></Spacer>
             <Nav setShow={setShow} changeCategory={changeCategory} filters={filters}>
                 <form>
                     {filters.map(v => (

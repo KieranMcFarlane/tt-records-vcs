@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Spacer from "../../components/Nav/spacer";
 import NavWhite from "../../components/Nav/white";
 import Overlay from "../../components/Nav/Overlay";
 import Video from "../../components/Posts/Video";
@@ -268,6 +269,10 @@ const TracklistContainer = styled.div`
 .featured__release__description {
     margin-top: 30px;
 
+    iframe {
+        margin-bottom: 32px;
+    }
+
     @media screen and (max-width: 1000px) {
         padding-right: 1rem;
         padding-left: 1rem;
@@ -292,6 +297,11 @@ const TracklistContainer = styled.div`
     font-weight: bold;     
 }
 
+.tracklist {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
 @media only screen and (min-width: 1000px) {
     display: flex;
     max-width: 1140px;
@@ -306,6 +316,7 @@ const TracklistContainer = styled.div`
         border-top: none;
         width: 45%;
         padding-left: 80px;
+        padding-right: 0;
     }
 
     .tracklist h2 {
@@ -377,7 +388,7 @@ const VideoComponentContainer = styled.div`
 
 
 const Release = (props)  => {
-const {id, title, subtitle, content, iframe, link, tracklist, credits, bandcampLink, releaseContent, videoPoster} = props;
+const {id, title, subtitle, content, iframe, link, tracklist, publishedDate, credits, bandcampLink, releaseContent, videoPoster} = props;
 const [view, setView] = useState('full');
 const [show, setShow] = useState(false);
 
@@ -389,7 +400,7 @@ console.log(props)
                 <title>TT records | Releases</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
+            <Spacer></Spacer>
             <NavWhite setShow={setShow}>
                 <MarqueeWhite>Reading: {subtitle} - {title}</MarqueeWhite>
             </NavWhite>
@@ -402,23 +413,35 @@ console.log(props)
          <div className="content__container">
              <div className="release__container">
                  <p className="release__category">Digital</p>
-                 <date className="date">Released March 20th 2020</date>
+                 {publishedDate && (
+                <date className="date">{publishedDate}</date>
+                )}  
              </div>
          <h1 className="title">{title}</h1>
             <h2>{subtitle}</h2>
-         <div className="desktop-bandcamp"><a href={bandcampLink}>Buy on Bandcamp</a></div>
+            {bandcampLink && (
+                <div className="desktop-bandcamp"><a href={bandcampLink}>Buy on Bandcamp</a></div>
+            )}
          </div>
 
          <div className="image__container"><img src="https://media.graphcms.com/op8Om5jgSAGE614eviRI" alt="" /></div>
 
     </FeaturedRelease>
 
-    <MobileBandcamp><a href="#">Buy on Bandcamp</a></MobileBandcamp>
+        <MobileBandcamp>
+            {bandcampLink && (
+                <a href={bandcampLink}>Buy on Bandcamp</a>
+            )}
+        </MobileBandcamp>
         <TracklistContainer>
              <section className="container no-margin featured__description__container">
                  <section className="featured__release__description">
-                     <div className="lead"><ReactMarkdown source={content.markdown} /></div>
-                     <ReactMarkdown source={releaseContent.markdown} />
+                 {content && (
+                <div className="lead"><ReactMarkdown source={content.markdown} /></div>
+                )}
+                {releaseContent && (
+                <ReactMarkdown source={releaseContent.markdown} />
+                )}
                      {iframe && (
                      <iframe width="100%" height="60" src={iframe}></iframe>
                      )}
